@@ -115,68 +115,68 @@ def recurse(data):
         tree = html.fromstring(page.content)
 
 
-        ####################################################
-        #Article Information like Languages Available and Categories
-        i_info_section = info_section.copy()
-        i_info_section["info_content"] = unquote(lts(tree.xpath('//div[@id="article_info"]//text()')))
+        # ####################################################
+        # #Article Information like Languages Available and Categories
+        # i_info_section = info_section.copy()
+        # i_info_section["info_content"] = unquote(lts(tree.xpath('//div[@id="article_info"]//text()')))
 
 
-        ####################################################
-        #Citations and References in the article
-        i_cite_section = cite_section.copy()
-        i_cite_section["cite"] = tree.xpath('//div[@id="sourcesandcitations"]/div/ol/li/span/a/text()')
+        # ####################################################
+        # #Citations and References in the article
+        # i_cite_section = cite_section.copy()
+        # i_cite_section["cite"] = tree.xpath('//div[@id="sourcesandcitations"]/div/ol/li/span/a/text()')
 
 
-        ####################################################
-        #Links to other wikihow articles related to this article
-        i_related_section = related_section.copy()
-        i_related_section["urls"] = tree.xpath('//div[@id="relatedwikihows"]//a[@class="related-image-link"]/@href')
+        # ####################################################
+        # #Links to other wikihow articles related to this article
+        # i_related_section = related_section.copy()
+        # i_related_section["urls"] = tree.xpath('//div[@id="relatedwikihows"]//a[@class="related-image-link"]/@href')
 
 
-        ####################################################
-        #Video in the article
-        i_video_section = video_section.copy()
-        i_video_section["video_url"] = tree.xpath('//div[@id="sourcesandcitations"]/div/ol/li/span/a/text()')
+        # ####################################################
+        # #Video in the article
+        # i_video_section = video_section.copy()
+        # i_video_section["video_url"] = tree.xpath('//div[@id="sourcesandcitations"]/div/ol/li/span/a/text()')
 
 
-        ####################################################
-        #Questions and Answers (including unanswered) of the article
-        i_qa_section = qa_section.copy()
-        for qas in tree.xpath('//div[@class="qa_li_container"]'):
-            i_qa = qa.copy()
-            i_qa["question"] = lts(qas.xpath('.//div[@class="qa_q_txt question" or @class="qa_q_txt"]/text()'))
-            i_qa["answer"] = lts(qas.xpath('.//div[@class="qa_answer answer"]/text()'))
-            i_qa["answerer"] = list(map(str.strip, qas.xpath('.//div[@class="qa_answerer_info"]//text()')))
-            i_qa["helpful"] = lts(qas.xpath('.//a[@class="wh_vote_up wh_vote_box"]/span/text()'))
-            i_qa["not_helpful"] = lts(qas.xpath('.//a[@class="wh_vote_down wh_vote_box"]/span/text()'))
-            i_qa_section["qas"].append(i_qa)
+        # ####################################################
+        # #Questions and Answers (including unanswered) of the article
+        # i_qa_section = qa_section.copy()
+        # for qas in tree.xpath('//div[@class="qa_li_container"]'):
+        #     i_qa = qa.copy()
+        #     i_qa["question"] = lts(qas.xpath('.//div[@class="qa_q_txt question" or @class="qa_q_txt"]/text()'))
+        #     i_qa["answer"] = lts(qas.xpath('.//div[@class="qa_answer answer"]/text()'))
+        #     i_qa["answerer"] = list(map(str.strip, qas.xpath('.//div[@class="qa_answerer_info"]//text()')))
+        #     i_qa["helpful"] = lts(qas.xpath('.//a[@class="wh_vote_up wh_vote_box"]/span/text()'))
+        #     i_qa["not_helpful"] = lts(qas.xpath('.//a[@class="wh_vote_down wh_vote_box"]/span/text()'))
+        #     i_qa_section["qas"].append(i_qa)
 
 
-        ####################################################
-        #Warnings in the article
-        i_warning_section = warning_section.copy()
-        for warning in tree.xpath('//div[@id="warnings"]//li'):
-            i_warning_section["warnings"].append((lts(warning.xpath('./text()'))).strip())
+        # ####################################################
+        # #Warnings in the article
+        # i_warning_section = warning_section.copy()
+        # for warning in tree.xpath('//div[@id="warnings"]//li'):
+        #     i_warning_section["warnings"].append((lts(warning.xpath('./text()'))).strip())
 
 
-        ####################################################
-        #Tips in the article
-        i_tip_section = tip_section.copy()
-        for tips in tree.xpath('//div[@id="tips"]//li'):
-            i_tip_section["tips"].append(lts(tips.xpath('.//text()')))
+        # ####################################################
+        # #Tips in the article
+        # i_tip_section = tip_section.copy()
+        # for tips in tree.xpath('//div[@id="tips"]//li'):
+        #     i_tip_section["tips"].append(lts(tips.xpath('.//text()')))
 
 
-        ####################################################
-        #Things you'll need in the article
-        i_thingsyoullneed_section = thingsyoullneed_section.copy()
-        for things in tree.xpath('//div[@id="thingsyoullneed"]//li'):
-            i_thingsyoullneed_section["things"].append((lts(things.xpath('.//text()'))).strip())
+        # ####################################################
+        # #Things you'll need in the article
+        # i_thingsyoullneed_section = thingsyoullneed_section.copy()
+        # for things in tree.xpath('//div[@id="thingsyoullneed"]//li'):
+        #     i_thingsyoullneed_section["things"].append((lts(things.xpath('.//text()'))).strip())
 
 
-        ####################################################
-        #Quick Summary Section from the article
-        i_quick_summary_section = quick_summary_section.copy()
-        i_quick_summary_section["quick_summary"] = lts(tree.xpath('//div[@id="quicksummary"]/p//text()'))
+        # ####################################################
+        # #Quick Summary Section from the article
+        # i_quick_summary_section = quick_summary_section.copy()
+        # i_quick_summary_section["quick_summary"] = lts(tree.xpath('//div[@id="quicksummary"]/p//text()'))
 
 
         ####################################################
@@ -193,31 +193,31 @@ def recurse(data):
         i_stats["views"] = lts(tree.xpath('//div[@id="sp_stats_box"]//*[contains(text(), "Views")]/span/text()'))
 
 
-        ####################################################
-        #To check whether the article is expert reviewed
-        i_expert_review = expert_review.copy()
-        i_expert_review["name"] = lts(tree.xpath('//div[@id="sp_expert_name"]//text()'))
-        i_expert_review["designation"] = lts(tree.xpath('//div[@id="sp_expert_blurb"]//text()'))
+        # ####################################################
+        # #To check whether the article is expert reviewed
+        # i_expert_review = expert_review.copy()
+        # i_expert_review["name"] = lts(tree.xpath('//div[@id="sp_expert_name"]//text()'))
+        # i_expert_review["designation"] = lts(tree.xpath('//div[@id="sp_expert_blurb"]//text()'))
 
 
-        ####################################################
-        #Sections of the article
-        sections_dict = {}
-        for sections in tree.xpath('//div[contains(@class, "section steps")]'):
-            i_section = section.copy()
-            i_section["title"] = lts(sections.xpath('.//h3/span/text()'))
-            steps_dict = {}
-            for steps in sections.xpath('.//ol[contains(@class, "steps_list_")]/li'):
-                i_step = step.copy()
-                i_step["pic_url"] = lts(steps.xpath('.//img/@src'))
-                i_step["title"] = lts(steps.xpath('.//b[@class="whb"]//text()'))
-                i_step["desc"] = lts(steps.xpath('.//div[@class="step"]/text()')).strip()
-                i_step["points"] = steps.xpath('.//li//text()')
-                step_num = lts(steps.xpath('.//div[@class="step_num"]//text()'))
-                steps_dict[step_num] = i_step
-            i_section["steps"] = steps_dict
-            section_num = lts(sections.xpath('.//h3/div/span/text()'))
-            sections_dict[section_num] = i_section
+        # ####################################################
+        # #Sections of the article
+        # sections_dict = {}
+        # for sections in tree.xpath('//div[contains(@class, "section steps")]'):
+        #     i_section = section.copy()
+        #     i_section["title"] = lts(sections.xpath('.//h3/span/text()'))
+        #     steps_dict = {}
+        #     for steps in sections.xpath('.//ol[contains(@class, "steps_list_")]/li'):
+        #         i_step = step.copy()
+        #         i_step["pic_url"] = lts(steps.xpath('.//img/@src'))
+        #         i_step["title"] = lts(steps.xpath('.//b[@class="whb"]//text()'))
+        #         i_step["desc"] = lts(steps.xpath('.//div[@class="step"]/text()')).strip()
+        #         i_step["points"] = steps.xpath('.//li//text()')
+        #         step_num = lts(steps.xpath('.//div[@class="step_num"]//text()'))
+        #         steps_dict[step_num] = i_step
+        #     i_section["steps"] = steps_dict
+        #     section_num = lts(sections.xpath('.//h3/div/span/text()'))
+        #     sections_dict[section_num] = i_section
 
 
         ####################################################
