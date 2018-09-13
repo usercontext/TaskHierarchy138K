@@ -1,208 +1,295 @@
-<!DOCTYPE html>
-<meta charset="utf-8">
-<style>
-    .node {
-        cursor: pointer;
-    }
+<script src="http://www.google.com/jsapi" type="text/javascript"></script> 
+<script type="text/javascript">google.load("jquery", "1.3.2");</script>
 
-    .node circle {
-        fill: #fff;
-        stroke: steelblue;
-        stroke-width: 1.5px;
-    }
+<style type="text/css">
+	body {
+		font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+		font-weight:300;
+		font-size:18px;
+		margin-left: auto;
+		margin-right: auto;
+		width: 1100px;
+	}
+	
+	h1 {
+		font-weight:300;
+	}
+	
+	.disclaimerbox {
+		background-color: #eee;		
+		border: 1px solid #eeeeee;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+		padding: 20px;
+	}
 
-    .node text {
-        font: 10px sans-serif;
-    }
+	video.header-vid {
+		height: 140px;
+		border: 1px solid black;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	img.header-img {
+		height: 140px;
+		border: 1px solid black;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	img.rounded {
+		border: 1px solid #eeeeee;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	a:link,a:visited
+	{
+		color: #1367a7;
+		text-decoration: none;
+	}
+	a:hover {
+		color: #208799;
+	}
+	
+	td.dl-link {
+		height: 160px;
+		text-align: center;
+		font-size: 22px;
+	}
+	
+	.layered-paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		        0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+		        5px 5px 0 0px #fff, /* The second layer */
+		        5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+		        10px 10px 0 0px #fff, /* The third layer */
+		        10px 10px 1px 1px rgba(0,0,0,0.35), /* The third layer shadow */
+		        15px 15px 0 0px #fff, /* The fourth layer */
+		        15px 15px 1px 1px rgba(0,0,0,0.35), /* The fourth layer shadow */
+		        20px 20px 0 0px #fff, /* The fifth layer */
+		        20px 20px 1px 1px rgba(0,0,0,0.35), /* The fifth layer shadow */
+		        25px 25px 0 0px #fff, /* The fifth layer */
+		        25px 25px 1px 1px rgba(0,0,0,0.35); /* The fifth layer shadow */
+		margin-left: 10px;
+		margin-right: 45px;
+	}
 
-    .link {
-        fill: none;
-        stroke: #ccc;
-        stroke-width: 1.5px;
-    }
+	.paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		        0px 0px 1px 1px rgba(0,0,0,0.35); /* The top layer shadow */
+
+		margin-left: 10px;
+		margin-right: 45px;
+	}
+
+
+	.layered-paper { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		        0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+		        5px 5px 0 0px #fff, /* The second layer */
+		        5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+		        10px 10px 0 0px #fff, /* The third layer */
+		        10px 10px 1px 1px rgba(0,0,0,0.35); /* The third layer shadow */
+		margin-top: 5px;
+		margin-left: 10px;
+		margin-right: 30px;
+		margin-bottom: 5px;
+	}
+	
+	.vert-cent {
+		position: relative;
+	    top: 50%;
+	    transform: translateY(-50%);
+	}
+	
+	hr
+	{
+		border: 0;
+		height: 1px;
+		background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+	}
 </style>
 
-<body>
-    <script src="https://d3js.org/d3.v3.min.js"></script>
-    <script>
-        var margin = {
-                top: 20,
-                right: 120,
-                bottom: 20,
-                left: 120
-            },
-            width = 1500 - margin.right - margin.left,
-            height = 800 - margin.top - margin.bottom;
+<html>
+  <head>
+		<title>Task Hierarchy 138K</title>
+		<meta property="og:image" content="https://usercontext.github.io/TaskHierarchy138K/resources/images/hierarchy.png"/>
+		<meta property="og:title" content="Task Hierarchy 138K" />
+  </head>
 
-        var i = 0,
-            duration = 750,
-            root;
+  <body>
+    <br>
+          <center>
+          	<span style="font-size:42px">Task Hierarchy 138K</span>
+	  		  <table align=center width=600px>
+	  			  <tr>
+	  	              <td align=center width=100px>
+	  					<center>
+	  						<span style="font-size:20px"><a href="http://sebastinsanty.com/">Sebastin Santy</a></span>
+		  		  		</center>
+		  		  	  </td>
+	  	              <td align=center width=100px>
+	  					<center>
+	  						<span style="font-size:20px"><a href="http://www.rishabhmehrotra.com/">Rishabh Mehrotra</a></span>
+		  		  		</center>
+		  		  	  </td>
+	  	              <td align=center width=100px>
+	  					<center>
+	  						<span style="font-size:20px"><a href="https://emineyilmaz.cs.ucl.ac.uk/">Emine Yilmaz</a></span>
+		  		  		</center>
+		  		  	  </td>
+			  </table>
 
-        var tree = d3.layout.tree()
-            .size([height, width]);
+	  		  <table align=center width=650px>
+	  			  <tr>
+	  	              <td align=center width=150px>
+	  					<center>
+	  						<span style="font-size:22px"><a href='./d3.html'> [Web Demo]</a>
+		  		  		</center>
+		  		  	  </td>
+	  	              <td align=center width=150px>
+	  					<center>
+	  						<span style="font-size:22px"><a href='https://github.com/usercontext/TaskHierarchy138K/blob/master/category_article.json'> [Dataset]</a></span>
+		  		  		</center>
+		  		  	  </td>
+		  		  	 </tr>
+	  			  <tr>
+			  </table>
+          </center>
 
-        var diagonal = d3.svg.diagonal()
-            .projection(function (d) {
-                return [d.y, d.x];
-            });
+<!--   		  <br><br>
+		  <hr> -->
 
-        var svg = d3.select("body").append("svg")
-            .attr("width", width + margin.right + margin.left)
-            .attr("height", height + margin.top + margin.bottom)
-            .append("g")
-            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  		  <br>
+  		  <table align=center width=850px>
+  			  <tr>
+  	              <td width=400px>
+  					<center>
+  	                	<a href="./resources/images/hierarchy.png"><img class="rounded" src = "./resources/images/hierarchy.png" height="500px"></img></href></a><br>
+					</center>
+  	              </td>
+                </tr>
+  	              <td width=400px>
+  					<center>
+  	                	<span style="font-size:14px"><i>Check the interactive version of the above hierarchy <a href="./d3.html"><b>here</b></a></i>
+					</center>
+  	              </td>
 
-        d3.json("https://raw.githubusercontent.com/usercontext/TaskHierarchy138K/master/category_article.json", function (error, flare) {
-            if (error) throw error;
+  		  </table>
 
-            root = flare;
-            root.x0 = height / 2;
-            root.y0 = 0;
+			<br>
+			<hr>
 
-            function collapse(d) {
-                if (d.children) {
-                    d._children = d.children;
-                    d._children.forEach(collapse);
-                    d.children = null;
-                }
-            }
+  		  <table align=center width=850px>
+	  		  <center><h1>Description</h1></center>
+	  		  <tr>
+	  		  	<td>
+	  		    </td>
+	  		  </tr>
+			</table>
 
-            root.children.forEach(collapse);
-            update(root);
-        });
+					Wikihow provides task information, so we use it as a source of task information. We use Wikihow for building the
+					external hierarchical ontology as it is one of the most data-rich task-solving online community. Each article in
+					Wikihow can be interpreted effectively as a task, hence a ontology grouping all of them would be great in order to
+					build the hierarchy. We notice that each article in Wikihow belongs to a specific category ladder. Each node in the
+					newly constructed hierarchy represents a category, with its children nodes representing its subcategories. We construct
+					and release this hierarchy keeping reproducibility in mind so that it can be used as a baseline for for future
+					tasks-based work.
 
-        d3.select(self.frameElement).style("height", "800px");
+  		  <br><br>
+		  <hr>
+			
+		  <table align=center width=850px>
+				<center><h1>Examples</h1></center>
+				<thead
+				<th>
+					<td>
+						<b>Article</b>
+					</td>
+					<td>
+						<b>Category Tree</b>
+					</td>
+				</th>
+				</thead>
+				<tbody>
+	  		  	<tr><td></td></tr>
+				<tr>
+					<td>Pitch a Baseball </td>
+					<td>Sports and Fitness > Team Sports > Baseball > Pitching</td>
+				</tr>
+				<tr>
+					<td>Clean a Coffee Maker</td>
+					<td>Food and Entertaining > Drinks > Coffee</td>
+				</tr>
+				<tr>
+					<td>Motivate Your Child</td>
+					<td>Family Life > Parenting > Behavioral Issues</td>
+				</tr>
+				<tr>
+					<td>See the White House</td>
+					<td>Travel > Destinations > North America Travel > United States Travel > Washington D.C. Travel</td>
+				</tr>
+			</tbody>
+			</table>
+  		  <br><br>
+		  <hr>
+		<table align=center width=850px>
+			<center>
+				<h1>Statistics</h1>
+			</center>
+			<tr>
+				<td>Maximum Depth:</td>
+				<td>8</td>
+			</tr>
+			<tr>
+				<td>No. of Nodes (Categories): </td>
+				<td>4657</td>
+			</tr>
+			<tr>
+				<td>No. of Leaf Nodes: </td>
+				<td>3461</td>
+			</tr>
+			<tr>
+				<td>No. of Articles present in the hierarchy: </td>
+				<td>138092</td>
+			</tr>
+		</table>
+		<br><br>
+		<hr>
+		<table align=center width=850px>
+			<center>
+				<h1>Disclaimer</h1>
+			</center>
+		</table>
+			This dataset is includes information from "WikiHow" website. Use of this data must respect <a href="https://www.wikihow.com/wikiHow:Terms-of-Use">https://www.wikihow.com/wikiHow:Terms-of-Use</a>. The data is licensed under CC BY 3.0 by WikiHow. 
+			<br><br>
+			We do not own the copyright of any of the data used in building the hierarchy. We solely provide the hierarchy for researchers and educators who wish to
+			use the dataset for non-commercial research and/or educational purposes.
+			<link rel="canonical" href="http://www.wikihow.com">
+			<br><br>
+			<a href="./resources/images/ucl-logo.jpg"><img src="./resources/images/ucl-logo.jpg" height="70px"></img></href></a>
+			<a href="./resources/images/wikihow-logo.png"><img src="./resources/images/wikihow-logo.png" height="70px"></img></href></a><br>
+		<br><br>
+		<hr>
+		
+		<br><br>
 
-        function update(source) {
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-            // Compute the new tree layout.
-            var nodes = tree.nodes(root).reverse(),
-                links = tree.links(nodes);
+  ga('create', 'UA-75863369-1', 'auto');
+  ga('send', 'pageview');
 
-            // Normalize for fixed-depth.
-            nodes.forEach(function (d) {
-                d.y = d.depth * 180;
-            });
-
-            // Update the nodes…
-            var node = svg.selectAll("g.node")
-                .data(nodes, function (d) {
-                    return d.id || (d.id = ++i);
-                });
-
-            // Enter any new nodes at the parent's previous position.
-            var nodeEnter = node.enter().append("g")
-                .attr("class", "node")
-                .attr("transform", function (d) {
-                    return "translate(" + source.y0 + "," + source.x0 + ")";
-                })
-                .on("click", click);
-
-            nodeEnter.append("circle")
-                .attr("r", 1e-6)
-                .style("fill", function (d) {
-                    return d._children ? "lightsteelblue" : "#fff";
-                });
-
-            nodeEnter.append("text")
-                .attr("x", function (d) {
-                    return d.children || d._children ? -10 : 10;
-                })
-                .attr("dy", ".35em")
-                .attr("text-anchor", function (d) {
-                    return d.children || d._children ? "end" : "start";
-                })
-                .text(function (d) {
-                    return d.name;
-                })
-                .style("fill-opacity", 1e-6);
-
-            // Transition nodes to their new position.
-            var nodeUpdate = node.transition()
-                .duration(duration)
-                .attr("transform", function (d) {
-                    return "translate(" + d.y + "," + d.x + ")";
-                });
-
-            nodeUpdate.select("circle")
-                .attr("r", 4.5)
-                .style("fill", function (d) {
-                    return d._children ? "lightsteelblue" : "#fff";
-                });
-
-            nodeUpdate.select("text")
-                .style("fill-opacity", 1);
-
-            // Transition exiting nodes to the parent's new position.
-            var nodeExit = node.exit().transition()
-                .duration(duration)
-                .attr("transform", function (d) {
-                    return "translate(" + source.y + "," + source.x + ")";
-                })
-                .remove();
-
-            nodeExit.select("circle")
-                .attr("r", 1e-6);
-
-            nodeExit.select("text")
-                .style("fill-opacity", 1e-6);
-
-            // Update the links…
-            var link = svg.selectAll("path.link")
-                .data(links, function (d) {
-                    return d.target.id;
-                });
-
-            // Enter any new links at the parent's previous position.
-            link.enter().insert("path", "g")
-                .attr("class", "link")
-                .attr("d", function (d) {
-                    var o = {
-                        x: source.x0,
-                        y: source.y0
-                    };
-                    return diagonal({
-                        source: o,
-                        target: o
-                    });
-                });
-
-            // Transition links to their new position.
-            link.transition()
-                .duration(duration)
-                .attr("d", diagonal);
-
-            // Transition exiting nodes to the parent's new position.
-            link.exit().transition()
-                .duration(duration)
-                .attr("d", function (d) {
-                    var o = {
-                        x: source.x,
-                        y: source.y
-                    };
-                    return diagonal({
-                        source: o,
-                        target: o
-                    });
-                })
-                .remove();
-
-            // Stash the old positions for transition.
-            nodes.forEach(function (d) {
-                d.x0 = d.x;
-                d.y0 = d.y;
-            });
-        }
-
-        // Toggle children on click.
-        function click(d) {
-            if (d.children) {
-                d._children = d.children;
-                d.children = null;
-            } else {
-                d.children = d._children;
-                d._children = null;
-            }
-            update(d);
-        }
-    </script>
+</script>
+              
+</body>
+</html>
+ 
