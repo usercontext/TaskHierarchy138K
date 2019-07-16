@@ -7,16 +7,12 @@ The task hierarchy consists of binary classifiers at each node individually trai
 
 ### Demonstration
 
-
-<!-- Download the classifier pkl file and unzip it in the exp folder. Link: -->
-
-
 #### Train
 Go to exp folder
 ```
 cd exp
 ```
-Download the Bag of Words data attached to the task hierarchy: https://drive.google.com/file/d/1iae6Wqg4_YcTNMQJDgXCLoE7nAK7hHhm/view?usp=sharing and unzip.
+Download the Bag of Words data attached to the task hierarchy: [bow_data.zip](https://drive.google.com/file/d/1iae6Wqg4_YcTNMQJDgXCLoE7nAK7hHhm/view?usp=sharing) and unzip.
 ```
 python3 tasktrain.py
 ```
