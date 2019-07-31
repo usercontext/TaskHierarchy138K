@@ -1,0 +1,3 @@
+*.pkl
+bow_data.*
+sklearn_*
